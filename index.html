@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kamaleshwer S — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --accent: #7c6ff7;
+    --accent2: #4ecdc4;
+    --accent3: #ff6b6b;
+    --text: #f0eff8;
+    --text2: #9a98b0;
+    --text3: #5a5870;
+    --border: rgba(124,111,247,0.15);
+    --border2: rgba(255,255,255,0.06);
+    --glow: rgba(124,111,247,0.3);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* --- NOISE TEXTURE OVERLAY --- */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* --- NAV --- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(10,10,15,0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  nav a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--accent); }
+
+  /* --- SECTIONS --- */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* --- HERO --- */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(124,111,247,0.1);
+    border: 1px solid rgba(124,111,247,0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    align-self: flex-start;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  h1 .name-line { display: block; }
+  h1 .highlight {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent);
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-desc {
+    font-size: 1.15rem;
+    color: var(--text2);
+    max-width: 520px;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--glow);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text2);
+    padding: 14px 28px;
+    border-radius: 8px;
+    border: 1px solid var(--border2);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text3);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    animation: fadeUp 0.6s 0.5s ease both;
+  }
+
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: var(--text3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    animation: scrollLine 2s infinite;
+  }
+
+  @keyframes scrollLine {
+    to { left: 100%; }
+  }
+
+  /* --- BG GRID --- */
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(124,111,247,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124,111,247,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* glowing orbs */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .orb1 {
+    width: 600px; height: 600px;
+    background: rgba(124,111,247,0.12);
+    top: -200px; right: -100px;
+  }
+
+  .orb2 {
+    width: 400px; height: 400px;
+    background: rgba(78,205,196,0.08);
+    bottom: 20%; left: -100px;
+  }
+
+  /* --- SECTION SHARED --- */
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 3rem;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 3rem;
+    line-height: 1.1;
+  }
+
+  /* --- ABOUT --- */
+  #about { background: var(--bg2); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-text p {
+    color: var(--text2);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .stat-card:hover {
+    border-color: var(--border);
+    transform: translateY(-3px);
+  }
+
+  .stat-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* --- SKILLS --- */
+  #skills { background: var(--bg); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--border);
+    transform: translateY(-4px);
+  }
+
+  .skill-card:hover::before { opacity: 1; }
+
+  .skill-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .skill-category {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    background: rgba(124,111,247,0.1);
+    border: 1px solid rgba(124,111,247,0.2);
+    color: var(--accent);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .tag.teal {
+    background: rgba(78,205,196,0.1);
+    border-color: rgba(78,205,196,0.2);
+    color: var(--accent2);
+  }
+
+  .tag.red {
+    background: rgba(255,107,107,0.1);
+    border-color: rgba(255,107,107,0.2);
+    color: var(--accent3);
+  }
+
+  /* --- PROJECTS --- */
+  #projects { background: var(--bg2); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .project-card {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .project-card:hover {
+    border-color: var(--border);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(124,111,247,0.12);
+  }
+
+  .project-img {
+    height: 180px;
+    background: linear-gradient(135deg, rgba(124,111,247,0.06), rgba(78,205,196,0.06));
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .project-img svg {
+    width: 60px;
+    height: 60px;
+    transition: transform 0.4s ease;
+  }
+
+  .project-card:hover .project-img svg {
+    transform: scale(1.1) rotate(3deg);
+  }
+
+  .project-content {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .project-desc {
+    font-size: 0.92rem;
+    color: var(--text2);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    line-height: 1.6;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+  }
+
+  .project-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text2);
+    border: 1px solid var(--border2);
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+
+  .project-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(124,111,247,0.05);
+  }
+
+  .project-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* --- ACHIEVEMENTS --- */
+  #achievements { background: var(--bg); }
+
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 2.5rem 2.5rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px; top: 6px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--glow);
+  }
+
+  .timeline-item h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-item p {
+    color: var(--text2);
+    font-size: 0.9rem;
+  }
+
+  .timeline-badge {
+    display: inline-block;
+    margin-top: 0.5rem;
+    background: rgba(78,205,196,0.1);
+    border: 1px solid rgba(78,205,196,0.2);
+    color: var(--accent2);
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* --- EDUCATION --- */
+  #education { background: var(--bg2); }
+
+  .edu-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    transition: border-color 0.3s;
+  }
+
+  .edu-card:hover { border-color: var(--border); }
+
+  .edu-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 4px;
+    min-width: 80px;
+  }
+
+  .edu-body h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .edu-body .inst {
+    color: var(--text2);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .edu-score {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent2);
+  }
+
+  /* --- CONTACT --- */
+  #contact {
+    background: var(--bg);
+    text-align: center;
+  }
+
+  #contact .section-inner { padding-bottom: 8rem; }
+
+  #contact .section-title { margin-bottom: 1rem; }
+
+  .contact-subtitle {
+    color: var(--text2);
+    margin-bottom: 3rem;
+    font-size: 1rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    padding: 1rem 1.75rem;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    transition: border-color 0.3s, transform 0.3s, color 0.3s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    color: var(--accent);
+  }
+
+  .contact-link svg { width: 18px; height: 18px; }
+
+  /* --- FOOTER --- */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border2);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  footer p {
+    color: var(--text3);
+    font-size: 0.8rem;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .footer-lang {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .lang-pill {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 0.72rem;
+    color: var(--text3);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 900px) {
+    nav ul { gap: 1.2rem; }
+    nav a { font-size: 0.8rem; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .section-inner { padding: 4rem 1.5rem; }
+    #hero { padding: 7rem 1.5rem 4rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .scroll-hint { left: 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">K<span>.</span>S</a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="gallery.html">Gallery &amp; Resume</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-tag">Available for Internships &amp; Projects</div>
+  <h1>
+    <span class="name-line">Kamalesh S</span>
+    <span class="name-line highlight">Full Stack Dev</span>
+  </h1>
+  <p class="hero-desc">
+    B.E. Electronics &amp; Computer Engineering student at Sona College of Technology, Salem — passionate about Embedded Systems, IoT, Cyber Security, UI/UX &amp; 3D design.
+  </p>
+  <div class="hero-cta">
+    <a href="#contact" class="btn-primary">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.06 2.86 2 2 0 012 .68h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.37a16 16 0 006.29 6.29l1.06-1.16a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Get in Touch
+    </a>
+    <a href="#projects" class="btn-secondary">
+      View My Projects →
+    </a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    SCROLL DOWN
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <p class="section-label reveal">// about me</p>
+    <h2 class="section-title reveal">Who I Am</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm Kamaleshwer S, an Electronics and Computer Engineering student at Sona College of Technology, Salem — pursuing my B.E. with a CGPA of 8.29.</p>
+        <p>My curiosity spans from low-level embedded systems and IoT hardware to high-level UI/UX design and 3D modelling. I'm also deeply interested in Cyber Security and data analytics.</p>
+        <p>Beyond tech, I'm an Ambassador for the 3D Lab and Sona Incubation Center, and a polyglot — fluent in Tamil, English, and Hindi, with basics in French and German.</p>
+        <p style="margin-top:1.5rem; font-size:0.85rem; color:var(--text3);">
+           Salem, Tamil Nadu &nbsp;|&nbsp;  +91 9976403671 &nbsp;|&nbsp;  kamleshwer007@gmail.com
+        </p>
+      </div>
+      <div class="about-stats reveal">
+        <div class="stat-card">
+          <span class="stat-value">8.29</span>
+          <span class="stat-label">CGPA (B.E.)</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">87%</span>
+          <span class="stat-label">HSC Score</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">3+</span>
+          <span class="stat-label">Certified Course</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">3+</span>
+          <span class="stat-label">Hackathons</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label reveal">// technical skills</p>
+    <h2 class="section-title reveal">What I Work With</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <span class="skill-icon"></span>
+        <div class="skill-category">UI/UX & 3D Design</div>
+        <div class="skill-tags">
+          <span class="tag">Figma</span>
+          <span class="tag">UI Design</span>
+          <span class="tag">3D Modelling</span>
+          <span class="tag">Prototyping</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon"></span>
+        <div class="skill-category">Embedded Systems & IoT</div>
+        <div class="skill-tags">
+          <span class="tag teal">Arduino</span>
+          <span class="tag teal">Raspberry Pi</span>
+          <span class="tag teal">IoT Protocols</span>
+          <span class="tag teal">Sensors</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon"></span>
+        <div class="skill-category">Cyber Security</div>
+        <div class="skill-tags">
+          <span class="tag red">Security Concepts</span>
+          <span class="tag red">Data Analysis</span>
+          <span class="tag red">Networking Basics</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon"></span>
+        <div class="skill-category">Other Interests</div>
+        <div class="skill-tags">
+          <span class="tag">Design Thinking</span>
+          <span class="tag teal">Innovation</span>
+          <span class="tag red">Entrepreneurship</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-label reveal">// selected work</p>
+    <h2 class="section-title reveal">Featured Projects</h2>
+    <div class="projects-grid">
+      
+      <!-- Project 1: IoT Smart Ag -->
+      <div class="project-card reveal">
+        <div class="project-img">
+          <svg fill="none" stroke="url(#gradient-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            <circle cx="12" cy="12" r="9" stroke-dasharray="4 4"/>
+            <defs>
+              <linearGradient id="gradient-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="var(--accent)"/>
+                <stop offset="100%" stop-color="var(--accent2)"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Smart Agriculture IoT System</h3>
+          <p class="project-desc">Autonomous farming network monitoring soil moisture, NPK levels, and temperature. Sends real-time telemetry to an ESP32 gateway over MQTT.</p>
+          <div class="project-tags">
+            <span class="tag teal">ESP32</span>
+            <span class="tag teal">MQTT</span>
+            <span class="tag">Sensors</span>
+            <span class="tag">Arduino</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/kamalesh2007" target="_blank" class="project-btn">
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+            <a href="#" class="project-btn">Demo →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: NovaNet Security -->
+      <div class="project-card reveal">
+        <div class="project-img">
+          <svg fill="none" stroke="url(#gradient-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M12 8v4M12 16h.01"/>
+          </svg>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">NovaNet Intrusion System</h3>
+          <p class="project-desc">Lightweight packet analysis tool checking for anomalous traffic patterns in domestic IoT networks, alerting users to vulnerability exploits.</p>
+          <div class="project-tags">
+            <span class="tag red">Python</span>
+            <span class="tag red">Networking</span>
+            <span class="tag">Security</span>
+            <span class="tag teal">Raspberry Pi</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/kamalesh2007" target="_blank" class="project-btn">
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+            <a href="#" class="project-btn">Specs →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: SentinX Dashboard -->
+      <div class="project-card reveal">
+        <div class="project-img">
+          <svg fill="none" stroke="url(#gradient-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <path d="M9 17v-5M12 17V9M15 17v-3"/>
+          </svg>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">SentinX IoT Web Dashboard</h3>
+          <p class="project-desc">A premium responsive dashboard tracking live values and controls of connected home appliances, integrated with glassmorphic visuals.</p>
+          <div class="project-tags">
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">Figma UI</span>
+            <span class="tag teal">API</span>
+            <span class="tag">JS</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/kamalesh2007" target="_blank" class="project-btn">
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+            <a href="#" class="project-btn">Figma Prototype →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4: 3D Asset Viewer -->
+      <div class="project-card reveal">
+        <div class="project-img">
+          <svg fill="none" stroke="url(#gradient-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Interactive 3D Device Viewer</h3>
+          <p class="project-desc">Lightweight WebGL wireframe renderer enabling users to rotate and inspect custom 3D hardware designs directly in the browser.</p>
+          <div class="project-tags">
+            <span class="tag">Three.js</span>
+            <span class="tag">WebGL</span>
+            <span class="tag teal">3D Modelling</span>
+            <span class="tag">JS</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/kamalesh2007" target="_blank" class="project-btn">
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+            <a href="#" class="project-btn">View 3D →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-inner">
+    <p class="section-label reveal">// achievements</p>
+    <h2 class="section-title reveal">Milestones</h2>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <h3>Hackathon Participant</h3>
+        <p>Participated in three major hackathons: Anokha'26, INNOVISTA'25, and ELECTROTHON — competing with innovative solutions in technology and electronics.</p>
+        <span class="timeline-badge">Competitions</span>
+      </div>
+      <div class="timeline-item reveal">
+        <h3>IoT Bootcamp Graduate</h3>
+        <p>Successfully completed an intensive IoT Bootcamp along with multiple technical workshops, building hands-on experience in connected devices and hardware programming.</p>
+        <span class="timeline-badge">Certification</span>
+      </div>
+      <div class="timeline-item reveal">
+        <h3>NPTEL Certification — Design Thinking: A Primer</h3>
+        <p>Earned a certification from NPTEL in Design Thinking, developing skills in user-centered problem solving and innovation frameworks.</p>
+        <span class="timeline-badge">NPTEL</span>
+      </div>
+      <div class="timeline-item reveal">
+        <h3>Advanced Hindi Examinations</h3>
+        <p>Completed Advanced Hindi Examinations, alongside French and German basics — showcasing a commitment to multilingual communication.</p>
+        <span class="timeline-badge">Languages</span>
+      </div>
+      <div class="timeline-item reveal">
+        <h3>Ambassador — 3D Lab & Sona Incubation Center</h3>
+        <p>Appointed as an ambassador for both the college 3D Lab and Sona Incubation Center, representing and promoting innovation-driven culture on campus.</p>
+        <span class="timeline-badge">Leadership</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <p class="section-label reveal">// education</p>
+    <h2 class="section-title reveal">Academic Background</h2>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-year">2023 — Present</div>
+        <div class="edu-body">
+          <h3>B.E. Electronics and Computer Engineering</h3>
+          <p class="inst">Sona College of Technology, Salem</p>
+          <span class="edu-score">CGPA: 8.29 / 10</span>
+        </div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2023</div>
+        <div class="edu-body">
+          <h3>Higher Secondary Certificate (HSC)</h3>
+          <p class="inst">N.P.R Matric Higher Secondary School</p>
+          <span class="edu-score">87.16%</span>
+        </div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2021</div>
+        <div class="edu-body">
+          <h3>Secondary School Leaving Certificate (SSLC)</h3>
+          <p class="inst">N.P.R Matric Higher Secondary School</p>
+          <span class="edu-score">83.2%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label reveal">// contact</p>
+    <h2 class="section-title reveal">Let's Connect</h2>
+    <p class="contact-subtitle reveal">Open to internships, collaborations, and interesting projects. Let's build something together.</p>
+    <div class="contact-links reveal">
+      <a href="mailto:kamleshwer007@gmail.com" class="contact-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        kamleshwer007@gmail.com
+      </a>
+      <a href="tel:9976403671" class="contact-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.06 2.86 2 2 0 012 .68h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.37a16 16 0 006.29 6.29l1.06-1.16a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +91 9976403671
+      </a>
+      <a href="https://linkedin.com/in/kamalesh2007" target="_blank" class="contact-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/kamalesh2007
+      </a>
+      <a href="https://github.com/Kamalesh07-exe" target="_blank" class="contact-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        github.com/kamalesh2007
+      </a>
+      <a href="#" class="contact-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Salem, Tamil Nadu
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Kamaleshwer S — Built with passion in Salem</p>
+  <div class="footer-lang">
+    <span class="lang-pill">Tamil</span>
+    <span class="lang-pill">English</span>
+    <span class="lang-pill">French</span>
+    <span class="lang-pill">German</span>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
